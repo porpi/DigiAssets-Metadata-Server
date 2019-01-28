@@ -1,10 +1,10 @@
-# ColoredCoins Metadata Server
+# DigiAssets Metadata Server
 
 [![Slack Channel][slack-image]][slack-url]
 
 [![js-standard-style][js-standard-image]][js-standard-url]
 
-REST API server for fetching and sharing ColoredCoins transactions metadata.
+REST API server for fetching and sharing DigiAssets transactions metadata.
 
 ## Getting Started
 
@@ -24,7 +24,7 @@ AWS_SECRET_ACCESS_KEY
 AWS_S3_BUCKET
 ```
 
-Then, you can run the ColoredCoins metadata server with the following options:
+Then, you can run the DigiAssets metadata server with the following options:
 
 ```sh
 $ cc-metadata-server [options]
@@ -117,8 +117,8 @@ You can use custom properties by adding `properties.conf` to that folder.
 
 ## Hosted Server
 
-ColoredCoins maintains a hosted version of this server at:<br>
-`https://prod-metadata.coloredcoins.org`
+DigiAssets maintains a hosted version of this server at:<br>
+`https://DigiAssets.net`
 
 ## License
 
