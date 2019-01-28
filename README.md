@@ -1,9 +1,5 @@
 # DigiAssets Metadata Server
 
-[![Slack Channel][slack-image]][slack-url]
-
-[![js-standard-style][js-standard-image]][js-standard-url]
-
 REST API server for fetching and sharing DigiAssets transactions metadata.
 
 ## Getting Started
@@ -124,7 +120,4 @@ DigiAssets maintains a hosted version of this server at:<br>
 
 [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
-[js-standard-url]: https://github.com/feross/standard
-[js-standard-image]: https://cdn.rawgit.com/feross/standard/master/badge.svg
-[slack-image]: http://slack.coloredcoins.org/badge.svg
-[slack-url]: http://slack.coloredcoins.org
+
