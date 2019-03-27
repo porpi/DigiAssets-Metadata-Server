@@ -17,7 +17,7 @@ var Seeder = function (properties) {
 Seeder.prototype.seed = function () {
   var self = this
   // start marker for seeding can be given either from properties (file or environment variable) or last saved (as .txt file)
-  var marker = self.fromTorrentHash ? (self.fromTorrentHash + '.ccm') : null
+  var marker = self.fromTorrentHash ? (self.fromTorrentHash + '.dam') : null
   if (!marker && fs.existsSync('./localdata/marker.txt')) {
     marker = fs.readFileSync('./localdata/marker.txt', 'utf8')
   }

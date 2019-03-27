@@ -8,7 +8,7 @@ handler.on('error', function (err) {
 })
 
 var getMetadata = function (req, res, next) {
-  storage.getFile(req.data.torrentHash + '.ccm', function (err, data) {
+  storage.getFile(req.data.torrentHash + '.dam', function (err, data) {
     if (!err) return res.send(JSON.parse(data.Body.toString()))
     logger.error('getMetadata - err = ', err)
     handler.getMetadata(req.data.torrentHash, req.data.sha2, function (err, metadata) {
@@ -18,7 +18,7 @@ var getMetadata = function (req, res, next) {
       }
       try {
         var file = JSON.stringify(metadata)
-        storage.saveFile(file, req.data.torrentHash + '.ccm', function (err, data) {
+        storage.saveFile(file, req.data.torrentHash + '.dam', function (err, data) {
           if (err) logger.error(err)
           else logger.info('Saved File')
         })
@@ -36,7 +36,7 @@ var addMetadata = function (req, res, next) {
     if (err) return next(err)
     try {
       var file = JSON.stringify(req.data.metadata)
-      storage.saveFile(file, result.torrentHash.toString('hex') + '.ccm', function (err, data) {
+      storage.saveFile(file, result.torrentHash.toString('hex') + '.dam', function (err, data) {
         if (err) return next(err)
         return res.send(JSON.stringify({
           torrentHash: result.torrentHash.toString('hex'),

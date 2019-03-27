@@ -2,7 +2,7 @@ var casimir = global.casimir
 var server = casimir.server
 var properties = casimir.properties
 var logger = casimir.logger
-var MetadataHandler = require('cc-metadata-handler')
+var MetadataHandler = require('digiasset-metadata-handler')
 var Seeder = require('./app/modules/seeder.js')
 var fs = require('graceful-fs')
 

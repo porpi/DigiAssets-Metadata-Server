@@ -6,7 +6,7 @@ REST API server for fetching and sharing DigiAssets transactions metadata.
 
 ### Installation
 ```
-$ npm i -g cc-metadata-server
+$ npm i -g digiasset-metadata-server
 ```
 
 ### Run
@@ -23,7 +23,7 @@ AWS_S3_BUCKET
 Then, you can run the DigiAssets metadata server with the following options:
 
 ```sh
-$ cc-metadata-server [options]
+$ digiasset-metadata-server [options]
 
   Options:
 
@@ -35,7 +35,7 @@ $ cc-metadata-server [options]
 Or just run it with the defaults using:
 
 ```sh
-$ cc-metadata-server
+$ digiasset-metadata-server
 ```
 
 ## API

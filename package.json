@@ -1,13 +1,13 @@
 {
-  "name": "cc-metadata-server",
-  "description": "REST API server for fetching and sharing ColoredCoins transactions metadata",
-  "version": "0.1.1",
+  "name": "digiasset-metadata-server",
+  "description": "REST API server for fetching and sharing DigiAsset transactions metadata",
+  "version": "0.2.0",
   "main": "app.js",
   "dependencies": {
     "async": "^2.1.4",
     "aws-sdk": "^2.1.16",
     "casimircore": "^0.11.3",
-    "cc-metadata-handler": "^0.6.0",
+    "digiasset-metadata-handler": "^0.7.0",
     "graceful-fs": "^4.1.2",
     "jsonfile": "^2.0.0",
     "jwt-simple": "^0.3.1",
@@ -24,16 +24,17 @@
     "start": "node app.js"
   },
   "bin": {
-    "cc-metadata-server": "./bin/cc-metadata-server"
+    "digiasset-metadata-server": "./bin/digiasset-metadata-server"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Colored-Coins/Colored-Coins-Metadata-Server.git"
+    "url": "https://github.com/DigiByte-Core/DigiAsset-Metadata-Server.git"
   },
   "keywords": [
     "torrent",
-    "colored coins",
+    "digiassets",
     "bitcoin",
+    "digibyte",
     "blockchain",
     "cryptocurrency"
   ],
