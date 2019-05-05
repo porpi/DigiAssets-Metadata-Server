@@ -1,6 +1,6 @@
 # DigiAssets Metadata Server
 
-REST API server for fetching and sharing DigiAssets transactions metadata.
+REST API server for fetching and sharing DigiAssets transactions metadata. To learn how this repo fits into the DigiAssets stack please read the [API docs & wiki](https://github.com/DigiByte-Core/DigiAssets-Protocol-Specifications/wiki/API-Docs). 
 
 ## Getting Started
 
