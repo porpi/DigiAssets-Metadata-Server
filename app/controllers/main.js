@@ -9,7 +9,6 @@ handler.on('error', function (err) {
 
 var getMetadata = function (req, res, next) {
   storage.getFile(req.data.torrentHash + '.dam', function (err, data, t) {
-    console.log(err, data, t)
     if (!err) return res.send(JSON.parse(data.Body.toString()))
     logger.error('getMetadata - err = ', err)
     handler.getMetadata(req.data.torrentHash, req.data.sha2, function (err, metadata) {

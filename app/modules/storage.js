@@ -2,7 +2,6 @@ var S3Storage = require('./s3-storage')
 var MinioStorage = require('./minio-storage')
 
 var Storage = function (properties) {
-  console.log(properties.storage.type)
   if (properties.storage.type === 's3') {
     var accessKeyId = properties.AWS.accessKeyId
     var secretAccessKey = properties.AWS.secretAccessKey
@@ -23,7 +22,7 @@ var Storage = function (properties) {
     var bucket = properties.MINIO.MinIObucket
 
     if (!accessKeyId || !secretKey || !bucket) {
-      //throw new Error('Missing parameters for MINIO storage')
+      throw new Error('Missing parameters for MINIO storage')
     }
 
     this.minioClient = new MinioStorage({

@@ -27,9 +27,7 @@ Seeder.prototype.seed = function () {
     async.whilst(
       function () { return !done },
       function (callback) {
-        console.log('kskskdfsdf')
         storage.listKeys({maxKeys: self.seedBulkSize, marker: marker}, function (err, res) {
-          console.log(err, res)
           if (err) return callback(err)
           var keys = res.keys
           done = res.done
