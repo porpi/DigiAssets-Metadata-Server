@@ -19,16 +19,22 @@ var Storage = function (properties) {
   } else if (properties.storage.type === 'minio') {
     var accessKey = properties.MINIO.accessKey
     var secretKey = properties.MINIO.secretKey
-    var bucket = properties.MINIO.MinIObucket
+    var bucket = properties.MINIO.miniobucket
+    var endPoint = properties.MINIO.endPoint
+    var minioPort = properties.MINIO.minioPort
+    var minioSSL = properties.MINIO.minioSSL
 
-    if (!accessKeyId || !secretKey || !bucket) {
+    if (!accessKeyId || !secretKey || !bucket || !endPoint || !minioSSL || minioPort) {
       throw new Error('Missing parameters for MINIO storage')
     }
 
     this.minioClient = new MinioStorage({
       accessKey: accessKey,
       secretKey: secretKey,
-      bucket: bucket
+      bucket: bucket,
+      endPoint: endPoint,
+      minioPort: minioPort,
+      minioSSL: minioSSL
     })
   }
 }

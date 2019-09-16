@@ -14,7 +14,10 @@ properties.AWS.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || properties
 properties.AWS.S3bucket = process.env.AWS_S3_BUCKET || properties.AWS.S3bucket
 properties.MINIO.accessKey = process.env.accessKey || properties.MINIO.accessKey
 properties.MINIO.secretKey = process.env.secretKey || properties.MINIO.secretKey
-properties.MINIO.MinIObucket = process.env.MinIObucket || properties.MINIO.MinIObucket
+properties.MINIO.miniobucket = process.env.miniobucket || properties.MINIO.miniobucket
+properties.MINIO.endPoint = process.env.endPoint || properties.MINIO.endPoint
+properties.MINIO.minioPort = process.env.minioPort || properties.MINIO.minioPort
+properties.MINIO.minioSSL = process.env.minioSSL || properties.MINIO.minioSSL
 
 var logSettings = {
   level: properties.log && properties.log.level,

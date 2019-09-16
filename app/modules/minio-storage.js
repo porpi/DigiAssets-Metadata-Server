@@ -4,9 +4,9 @@ var mime = require('mime')
 var MinioStorage = function (properties) {
   this.bucket = properties.bucket
   this.minioClient = new Minio.Client({
-    endPoint: '127.0.0.1',
-    port: 9000,
-    useSSL: false,
+    endPoint: properties.endPoint,
+    port: properties.minioPort,
+    useSSL: properties.minioSSL,
     accessKey: properties.accessKey,
     secretKey: properties.secretKey
   })
