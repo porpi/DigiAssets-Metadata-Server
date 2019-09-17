@@ -2,13 +2,12 @@ var jwt = require('jwt-simple')
 var path = require('path')
 var casimirCore = require('casimircore')()
 var properties = casimirCore.properties(path.join(__dirname, '/../config/'))
-properties.storage = {}
-properties.MINIO = {}
+
 properties.torrent.seedBulkSize = process.env.SEED_BULK_SIZE || properties.torrent.seedBulkSize
 properties.torrent.seedBulkIntervalInMs = process.env.SEED_BULK_INTERVAL_MS || properties.torrent.seedBulkIntervalInMs
 properties.torrent.seed = process.env.SEED || properties.torrent.seed
 properties.torrent.fromTorrentHash = process.env.FROM_TORRENT_HASH || properties.torrent.fromTorrentHash
-properties.storage.type = process.env.storageType || 'minio'
+properties.storage.type = process.env.storageType || properties.storage.storageType
 properties.AWS.accessKeyId = process.env.AWS_ACCESS_KEY_ID || properties.AWS.accessKeyId
 properties.AWS.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || properties.AWS.secretAccessKey
 properties.AWS.S3bucket = process.env.AWS_S3_BUCKET || properties.AWS.S3bucket

@@ -24,7 +24,7 @@ var Storage = function (properties) {
     var minioPort = properties.MINIO.minioPort
     var minioSSL = properties.MINIO.minioSSL
 
-    if (!accessKeyId || !secretKey || !bucket || !endPoint || !minioSSL || minioPort) {
+    if (!accessKey || !secretKey || !bucket || !endPoint || !minioSSL || !minioPort) {
       throw new Error('Missing parameters for MINIO storage')
     }
 
@@ -33,8 +33,8 @@ var Storage = function (properties) {
       secretKey: secretKey,
       bucket: bucket,
       endPoint: endPoint,
-      minioPort: minioPort,
-      minioSSL: minioSSL
+      minioPort: Number(minioPort),
+      minioSSL: minioSSL == 'false' ? false : true
     })
   }
 }
