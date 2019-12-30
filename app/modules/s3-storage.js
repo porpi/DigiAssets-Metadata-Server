@@ -3,10 +3,13 @@ var mime = require('mime')
 
 var S3Storage = function (properties) {
   this.bucket = properties.bucket
-  this.s3Client = new AWS.S3({
+  var s3config = {
     accessKeyId: properties.accessKeyId,
     secretAccessKey: properties.secretAccessKey
-  })
+  }
+  if (properties.endpoint)
+    s3config.endpoint = properties.endpoint
+  this.s3Client = new AWS.S3(s3config)
 }
 
 S3Storage.prototype.listKeys = function (options, cb) {
@@ -14,7 +17,7 @@ S3Storage.prototype.listKeys = function (options, cb) {
     cb = options
     options = {}
   }
-  this.s3Client.listObjects({Bucket: this.bucket, Marker: options.marker, MaxKeys: options.maxKeys}, function (err, data) {
+  this.s3Client.listObjects({ Bucket: this.bucket, Marker: options.marker, MaxKeys: options.maxKeys }, function (err, data) {
     if (err) return cb(err)
     var result = {}
     result.done = !data.IsTruncated

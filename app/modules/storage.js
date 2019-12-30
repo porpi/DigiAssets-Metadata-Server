@@ -16,6 +16,22 @@ var Storage = function (properties) {
       secretAccessKey: secretAccessKey,
       bucket: bucket
     })
+  } else if (properties.storage.type === 'digitalocean') {
+    var accessKeyId = properties.DigitalOcean.accessKeyId
+    var secretAccessKey = properties.DigitalOcean.secretAccessKey
+    var bucket = properties.DigitalOcean.spaceName
+    var endpoint = properties.DigitalOcean.spacesEndPoint
+
+    if (!accessKeyId || !secretAccessKey || !bucket || !endpoint) {
+      throw new Error('Missing parameters for DigitalOcean Spaces storage')
+    }
+
+    this.s3Client = new S3Storage({
+      accessKeyId: accessKeyId,
+      secretAccessKey: secretAccessKey,
+      bucket: bucket,
+      endpoint: endpoint
+    })
   } else if (properties.storage.type === 'minio') {
     var accessKey = properties.MINIO.accessKey
     var secretKey = properties.MINIO.secretKey
