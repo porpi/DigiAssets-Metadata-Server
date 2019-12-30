@@ -17,10 +17,10 @@ var Storage = function (properties) {
       bucket: bucket
     })
   } else if (properties.storage.type === 'digitalocean') {
-    var accessKeyId = properties.DigitalOcean.accessKeyId
-    var secretAccessKey = properties.DigitalOcean.secretAccessKey
-    var bucket = properties.DigitalOcean.spaceName
-    var endpoint = properties.DigitalOcean.spacesEndPoint
+    var accessKeyId = properties.DIGITAL_OCEAN.accessKeyId
+    var secretAccessKey = properties.DIGITAL_OCEAN.secretAccessKey
+    var bucket = properties.DIGITAL_OCEAN.spaceName
+    var endpoint = properties.DIGITAL_OCEAN.spacesEndPoint
 
     if (!accessKeyId || !secretAccessKey || !bucket || !endpoint) {
       throw new Error('Missing parameters for DigitalOcean Spaces storage')
