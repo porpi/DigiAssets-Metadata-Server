@@ -1,23 +1,46 @@
 # DigiAssets Metadata Server
 
-REST API server for fetching and sharing DigiAssets transactions metadata. To learn how this repo fits into the DigiAssets stack please read the [API docs & wiki](https://github.com/DigiByte-Core/DigiAssets-Protocol-Specifications/wiki/API-Docs). 
+REST API server for fetching and sharing DigiAssets transactions metadata. To learn how this repo fits into the DigiAssets stack please read the [API docs & wiki](https://github.com/DigiByte-Core/DigiAssets-Protocol-Specifications/wiki/API-Docs).
 
 ## Getting Started
 
 ### Installation
+
 ```
 $ npm i -g digiasset-metadata-server
 ```
 
 ### Run
 
-Currently, the server uses [AWS S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html) storage service as a caching layer.
+Currently, the server can use [AWS S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html), DigitalOcean Spaces or MinIO storage service as a caching layer.
 So, in order to use the server one needs to set the environment variables:
+
+AWS Environment Variables
 
 ```
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
 AWS_S3_BUCKET
+```
+
+Digital Ocean Environment Variables
+
+```
+DO_ACCESS_KEY_ID
+DO_SECRET_ACCESS_KEY
+DO_SPACE_NAME
+DO_SPACES_ENDPOINT
+```
+
+MinIO Environment Variables
+
+```
+accessKey
+secretKey
+miniobucket
+endPoint
+minioPort
+minioSSL
 ```
 
 Then, you can run the DigiAssets metadata server with the following options:
@@ -42,66 +65,70 @@ $ digiasset-metadata-server
 
 ### `GET /getMetadata`
 
-* Query Parameters:
-  * `torrentHash` hex string of length 40, representing the SHA1 result of the origin metadata torrent file
-  * `sha2` hex string of length 64, the SHA256 result of `JSON.stringify()` of the origin metadata
+- Query Parameters:
 
-* Success Response:
-    
-   **Code:** 200 OK<br>
-   **Content:** The origin metadata JSON
+  - `torrentHash` hex string of length 40, representing the SHA1 result of the origin metadata torrent file
+  - `sha2` hex string of length 64, the SHA256 result of `JSON.stringify()` of the origin metadata
 
-* Error Response:
+- Success Response:
 
-   **Code:** 400 Bad Request<br>
-   **Content:** `"Can't get metadata"`<br>
-   In case no file which correponds to given `torrentHash` and `sha2` is found.
+  **Code:** 200 OK<br>
+  **Content:** The origin metadata JSON
+
+- Error Response:
+
+  **Code:** 400 Bad Request<br>
+  **Content:** `"Can't get metadata"`<br>
+  In case no file which correponds to given `torrentHash` and `sha2` is found.
 
 ### `POST /addMetadata`
 
-* Body Parameters:
-  * `metadata` JSON
-  * `token` JWT encoded by secret given in environment variable `JWTTOKENSECRET`. Decode is of the format `{iss: 'admin', exp: 'expiration'}`.</br>
-  If `JWTTOKENSECRET` environment variable (or corresponding properties file field) is not given, this parameter is ignored.
+- Body Parameters:
 
-* Success Response:
+  - `metadata` JSON
+  - `token` JWT encoded by secret given in environment variable `JWTTOKENSECRET`. Decode is of the format `{iss: 'admin', exp: 'expiration'}`.</br>
+    If `JWTTOKENSECRET` environment variable (or corresponding properties file field) is not given, this parameter is ignored.
+
+- Success Response:
 
   **Code:** 200 OK<br>
   **Content:** Object which consists of the following:
-    * `torrentHash` hex string of length 40, representing the SHA1 result of the origin metadata torrent file
-    * `sha2` hex string of length 64, the SHA256 result of `JSON.stringify()` of the origin metadata
 
-* Error Response:
+  - `torrentHash` hex string of length 40, representing the SHA1 result of the origin metadata torrent file
+  - `sha2` hex string of length 64, the SHA256 result of `JSON.stringify()` of the origin metadata
 
-   **Code:** 401 Unauthorized<br>
-   In case given `token` is not as expected.
+- Error Response:
+
+  **Code:** 401 Unauthorized<br>
+  In case given `token` is not as expected.
 
 ### `GET /shareMetadata`
 
-*  Query parameters
-   * `torrentHash` hex string of length 40, representing the SHA1 result of the origin metadata torrent file
-   * `token` JWT encoded by secret given in environment variable `JWTTOKENSECRET`. Decode is of the format `{iss: 'admin', exp: 'expiration'}`.</br>
-   If `JWTTOKENSECRET` environment variable (or corresponding properties file field) is not given, this parameter is ignored.
+- Query parameters
 
-* Success Response:
+  - `torrentHash` hex string of length 40, representing the SHA1 result of the origin metadata torrent file
+  - `token` JWT encoded by secret given in environment variable `JWTTOKENSECRET`. Decode is of the format `{iss: 'admin', exp: 'expiration'}`.</br>
+    If `JWTTOKENSECRET` environment variable (or corresponding properties file field) is not given, this parameter is ignored.
+
+- Success Response:
 
   **Code:** 200 OK<br>
   **Content:** The metadata file which has torrent which corresponds to `torrentHash`, is seeded to BitTorrent network.
 
-* Error Response:
+- Error Response:
 
-   **Code:** 401 Unauthorized<br>
-   In case given `token` is not as expected.
+  **Code:** 401 Unauthorized<br>
+  In case given `token` is not as expected.
 
-   **Code:** 400 Bad Request<br>
-   **Content:** `"Can't share metadata"`<br>
-   In case no file which corresponds to `torrentHash` is found.
+  **Code:** 400 Bad Request<br>
+  **Content:** `"Can't share metadata"`<br>
+  In case no file which corresponds to `torrentHash` is found.
 
 **Note:** this call should be preceded by a call to `POST /addMetadata`
 
 ## Configuration
 
-Default configuration per environment (`NODE_ENV` value) can be found in the [`config` directory](./config). 
+Default configuration per environment (`NODE_ENV` value) can be found in the [`config` directory](./config).
 You can use custom properties by adding `properties.conf` to that folder.
 
 ## Development
@@ -119,5 +146,3 @@ DigiAssets maintains a hosted version of this server at:<br>
 ## License
 
 [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-
